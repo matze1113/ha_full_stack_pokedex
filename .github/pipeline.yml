@@ -1,0 +1,26 @@
+name: Pokedex
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  simple_deployment_pipeline:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout-Quellcode
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Abhängigkeiten installieren
+        run: npm install
+
+      - name: Code Linting (mit Fix)
+        run: npm run eslint -- --fix
+
